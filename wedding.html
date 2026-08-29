@@ -216,12 +216,8 @@
         -webkit-backdrop-filter: none;
         backdrop-filter: none;
       }
-      body.scrolling .panel {
-        background: rgba(251, 248, 243, 0.9);
-      }
-      body.scrolling .place-card {
-        background: rgba(255, 255, 255, 0.88);
-      }
+      body.scrolling .panel { background: rgba(251, 248, 243, 0.9); }
+      body.scrolling .place-card { background: rgba(255, 255, 255, 0.88); }
 
       /* ============================================================
            КОНВЕРТ — ІНТРО
@@ -1436,13 +1432,10 @@
         window.addEventListener("resize", resize);
         resize();
 
-        var start = null,
-          last = 0,
-          paused = false;
+        var start = null, last = 0, paused = false;
         function frame(ts) {
           if (start === null) start = ts;
-          if (!paused && ts - last >= 24) {
-            // ~40 fps — легше для GPU
+          if (!paused && ts - last >= 24) {           // ~40 fps — легше для GPU
             last = ts;
             gl.uniform1f(uTime, (ts - start) / 1000);
             gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
@@ -1453,19 +1446,15 @@
 
         // не малюємо шовк під час скролу / коли вкладка неактивна — плавніший скрол
         var scrollT;
-        window.addEventListener(
-          "scroll",
-          function () {
-            paused = true;
-            document.body.classList.add("scrolling");
-            clearTimeout(scrollT);
-            scrollT = setTimeout(function () {
-              paused = false;
-              document.body.classList.remove("scrolling");
-            }, 140);
-          },
-          { passive: true },
-        );
+        window.addEventListener("scroll", function () {
+          paused = true;
+          document.body.classList.add("scrolling");
+          clearTimeout(scrollT);
+          scrollT = setTimeout(function () {
+            paused = false;
+            document.body.classList.remove("scrolling");
+          }, 140);
+        }, { passive: true });
         document.addEventListener("visibilitychange", function () {
           paused = document.hidden;
         });
@@ -1548,12 +1537,11 @@
           { time: "14:00", event: "Святковий банкет", location: "Дріада" },
         ],
         dressCodeColors: [
-          "#EAD4CA",
-          "#75162E",
-          "#D3A5A5",
-          "#AF7978",
-          "#492F1E",
-          "#795654",
+          "#4A4038",
+          "#C9B8A3",
+          "#F3EEE4",
+          "#A98E68",
+          "#8A7F72",
         ],
         // карта показує адресу головного святкування (банкет)
         mapQuery: "Дріада, вулиця Кулика і Гудачека 57",
